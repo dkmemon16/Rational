@@ -3,15 +3,13 @@
 Object subclass: #Rational .
 	Rational instanceVariableNames: 'numerator denominator distance time mass' .
 
-Rational class extend [
+Rational class extend 
 	new: numerator number2: denominator d: distance t:  time m: mass[
 		| d |
 		d := self init: numerator denominator distance time mass.
 		^d
-	]
-
-]
-
+	!
+!
 Rational extend[
 	init: num number2: den unit1: dist unit2: tm unit3: ms[
 		den = 0
