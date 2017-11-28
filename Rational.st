@@ -1,15 +1,43 @@
-Object subclass: #Rational.
-	Rational instanceVariableNames: 'numerator denominator distance time mass'.
-	Rational 	classVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator'.
-	Rational poolDictionaries: ' '.
-	Rational category: 'dimmensional fraction ' 
+Object subclass: #Rational
+    instanceVariableNames: 'numerator denominator distance time mass'
+	classVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator'
+	poolDictionaries: ' '
+	category: 'dimmensional fraction '	!
 
 
+!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
+intialize "set the dimmensions to 0"
+	defaultDistance:= 0.
+	defaultTime := 0.
+	defaultMass := 0.
+	defaultNumerator := 0.
+	defaultDenominator := 1.
+!!
+!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
+new "creates a Rational with the dimmensions set to 0"
+	^ super new init: defaultDistance time: defaultTime mass: defaultMass numerator: defaultNumerator denominator: defaultDenominator
+! !
+
+!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
+customRational: dist time: tm mass: ms numerator: num denominator: den
+	^super new init: dist time: tm mass: ms numerator: num denominator: den
+! !
+
+!Rational methodsFor: 'initialize' stamp: 'dkm 11/27/2017 01:52'!
+init: dist time: tm mass: ms numerator: num denominator: den
+	"initialize a Rational"
+
+		numerator := num.
+		denominator:= den.
+		distance := dist.
+		time := tm.
+		mass := ms.
+!!
 !Rational methodsFor: 'printing' !
 printRational	
 	numerator print .
 	  '/' printString . 
-	denominator print 
+	denominator print .
 		! !
 
 !Rational methodsFor: 'operation'!
@@ -26,7 +54,8 @@ add: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 		]
 		ifFalse:[
 			self error: 'The rationals do not have equivalent dimmensions'
-		].! !
+		].
+! !
 
 !Rational methodsFor: 'operation' stamp: 'dkm 11/27/2017 03:15'!
 multiply:  aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
@@ -70,42 +99,7 @@ subtract: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 			self error: 'The rationals do not have equivalent dimmensions'
 		].! !
 
-
-!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
-intialize "set the dimmensions to 0"
-	defaultDistance:= 0.
-	defaultTime := 0.
-	defaultMass := 0.
-	defaultNumerator := 0.
-	defaultDenominator := 1.
-!!
-!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
-new "creates a Rational with the dimmensions set to 0"
-	^ super new init: defaultDistance time: defaultTime mass: defaultMass numerator: defaultNumerator denominator: defaultDenominator
-! !
-
-!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
-customRational: dist time: tm mass: ms numerator: num denominator: den
-	^super new init: dist time: tm mass: ms numerator: num denominator: den
-! !
-
-!Rational methodsFor: 'initialize' stamp: 'dkm 11/27/2017 01:52'!
-init: dist time: tm mass: ms numerator: num denominator: den]
-	"initialize a Rational"
-		den = 0
-		ifTrue: [self error: 'The number 0 cannot be in the denominator'].
-		(num isKindOf: Integer)	ifFalse:[ self error: 'The number in the numerator must be an integer'].
-		(den isKindOf: Integer)
-		ifFalse:[self error: 'The number in the denominator must be an integer'].
-		
-		numerator := num.
-		denominator:= den.
-		distance := dist.
-		time := tm.
-		mass := ms.
-!!
-
 " tests"
 |a|
-	a := (Rational new) init: 1 num2: 2 num3: 3 num4: 4 num5: 5.
+	a := (Rational new) init num1: 1 num2: 2 num3: 3 num4: 4 num5: 5.
 	(a printRational).
