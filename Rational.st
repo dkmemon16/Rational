@@ -1,3 +1,4 @@
+"Rational class"
 Object subclass: #Rational
     instanceVariableNames: 'numerator denominator distance time mass'
 	classVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator'
@@ -5,7 +6,7 @@ Object subclass: #Rational
 	category: 'dimmensional fraction '	!
 
 
-!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
+!Rational class methodsFor: 'initialization'!
 intialize "set the dimmensions to 0"
 	defaultDistance:= 0.
 	defaultTime := 0.
@@ -13,17 +14,17 @@ intialize "set the dimmensions to 0"
 	defaultNumerator := 0.
 	defaultDenominator := 1.
 !!
-!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
+!Rational class methodsFor: 'initialization'!
 new "creates a Rational with the dimmensions set to 0"
 	^ super new init: defaultDistance time: defaultTime mass: defaultMass numerator: defaultNumerator denominator: defaultDenominator
 ! !
 
-!Rational class methodsFor: 'initialization' stamp: 'dkm 11/27/2017 01:52'!
+!Rational class methodsFor: 'initialization'!
 customRational: dist time: tm mass: ms numerator: num denominator: den
 	^super new init: dist time: tm mass: ms numerator: num denominator: den
 ! !
 
-!Rational methodsFor: 'initialize' stamp: 'dkm 11/27/2017 01:52'!
+!Rational methodsFor: 'initialize'!
 init: dist time: tm mass: ms numerator: num denominator: den
 	"initialize a Rational"
 
@@ -57,7 +58,7 @@ add: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 		].
 ! !
 
-!Rational methodsFor: 'operation' stamp: 'dkm 11/27/2017 03:15'!
+!Rational methodsFor: 'operation'!
 multiply:  aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 
 	|newNum newDen newDist newTime newMass result|
@@ -70,7 +71,7 @@ multiply:  aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 	"result simplify."
 	^result! !
 
-!Rational methodsFor: 'operation' stamp: 'dkm 11/27/2017 03:15'!
+!Rational methodsFor: 'operation'!
 divide:  aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 
 	|newNum newDen newDist newTime newMass result|
@@ -83,7 +84,7 @@ divide:  aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 	"result simplify."
 	^result! !
 
-!Rational methodsFor: 'operation' stamp: 'dkm 11/27/2017 02:28'!
+!Rational methodsFor: 'operation'!
 subtract: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 	"subtract two rationals"
 ((aDistance = distance) & (aTime = time) & (aMass = mass)) 
@@ -101,5 +102,5 @@ subtract: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 
 " tests"
 |a|
-	a := (Rational new) init num1: 1 num2: 2 num3: 3 num4: 4 num5: 5.
+	a := (Rational init)  num1: 1 num2: 2 num3: 3 num4: 4 num5: 5.
 	(a printRational).
