@@ -1,16 +1,14 @@
 Object subclass: #Rational .
     Rational instanceVariableNames: 'numerator denominator distance time mass' .
 	Rational class instanceVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator' .
-	Rational category: 'dimmensional fraction '	
-
 
 Rational class extend[
 	intialize ["set the dimmensions to 0"
-		defaultDistance:= 0
-		defaultTime := 0
-		defaultMass := 0
-		defaultNumerator := 0
-		defaultDenominator := 1
+		defaultDistance:= 0.
+		defaultTime := 0.
+		defaultMass := 0.
+		defaultNumerator := 0.
+		defaultDenominator := 1.
 	]
 	new ["creates a Rational with the dimmensions set to 0"
 		^ super new init: defaultDistance time: defaultTime mass: defaultMass numerator: defaultNumerator denominator: defaultDenominator
@@ -95,5 +93,5 @@ Rational class extend[
 ]!
 " tests"
 |a|
-	a := (Rational new) init num1: 1 num2: 2 num3: 3 num4: 4 num5: 5.
+	a := (Rational customRational): 1 num2: 2 num3: 3 num4: 4 num5: 5.
 	(a printRational).
