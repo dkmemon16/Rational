@@ -1,10 +1,10 @@
 Object subclass: #Rational .
     Rational instanceVariableNames: 'numerator denominator distance time mass' .
-	Rational class instanceVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator' .
+    Rational class instanceVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator' .
 
 Rational class extend[
 	intialize ["set the dimmensions to 0"
-		defaultDistance:= 0.
+		defaultDistance := 0.
 		defaultTime := 0.
 		defaultMass := 0.
 		defaultNumerator := 0.
