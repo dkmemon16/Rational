@@ -1,78 +1,18 @@
-'From Squeak5.1 of 5 September 2016 [latest update: #16549] on 21 November 2017 at 10:34:05 am'!
-Object subclass: #Rational
-	instanceVariableNames: 'numerator denominator distance time mass'
-	classVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator'
-	poolDictionaries: ''
-	category: 'UserObjects'!
-
-!Rational methodsFor: 'internal methods' stamp: 'dkm 11/27/2017 01:22'!
-gcd: x number2: y
-		|a b |
-		a := x.
-		b := y.
-		[(b = 0) not] 
-		whileTrue: [ |r|  
-			r := a rem: y.
-			a := b.
-			b := r].
-		^a! !
-
-!Rational methodsFor: 'internal methods' stamp: 'dkm 11/27/2017 01:23'!
-simplify
-		|g|
-		g:= self gcd: numerator number2: denominator.
-		numerator := numerator/g.
-		denominator := denominator/g.! !
+Object subclass: #Rational.
+	Rational instanceVariableNames: 'numerator denominator distance time mass'.
+	Rational 	classVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator'.
+	Rational poolDictionaries: ' '.
+	Rational category: 'dimmensional fraction ' 
 
 
-!Rational methodsFor: 'accesors' stamp: 'dkm 11/27/2017 01:24'!
-getDenominator
-		^denominator! !
+!Rational methodsFor: 'printing' !
+printRational	
+	numerator print .
+	  '/' printString . 
+	denominator print 
+		! !
 
-!Rational methodsFor: 'accesors' stamp: 'dkm 11/27/2017 01:25'!
-getDistance
-^distance! !
-
-!Rational methodsFor: 'accesors' stamp: 'dkm 11/27/2017 01:29'!
-getMass
-	^mass! !
-
-!Rational methodsFor: 'accesors' stamp: 'dkm 11/27/2017 01:28'!
-getNumerator
-^numerator! !
-
-!Rational methodsFor: 'accesors' stamp: 'dkm 11/27/2017 01:29'!
-getTime
-	^time! !
-
-!Rational methodsFor: 'mutators' stamp: 'dkm 11/27/2017 01:24'!
-setDenominator: newDenominator
-		denominator:=newDenominator
-! !
-
-!Rational methodsFor: 'mutators' stamp: 'dkm 11/27/2017 01:25'!
-setDistance: newDistance
-	distance:= newDistance! !
-
-!Rational methodsFor: 'mutators' stamp: 'dkm 11/27/2017 01:29'!
-setMass: newMass
-	mass := newMass! !
-
-!Rational methodsFor: 'mutators' stamp: 'dkm 11/27/2017 01:28'!
-setNumerator: newNumerator
-	numerator:= newNumerator! !
-
-!Rational methodsFor: 'mutators' stamp: 'dkm 11/27/2017 01:29'!
-setTime: newTime
-	time:=newTime! !
-
-
-!Rational methodsFor: 'printing' stamp: 'dkm 11/27/2017 01:30'!
-printRational
-		^(numerator printString), '/', (denominator printString)	! !
-
-
-!Rational methodsFor: 'operation' stamp: 'dkm 11/27/2017 01:32'!
+!Rational methodsFor: 'operation'!
 add: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 	"add two rationals"
 ((aDistance = distance) & (aTime = time) & (aMass = mass)) 
@@ -81,7 +21,7 @@ add: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 		num := (numerator * aDenominator) + (denominator * aNumerator).
 		den := denominator * aDenominator.
 		result := self new num den distance time mass.
-		result simplify.
+		"result simplify."
 		^result
 		]
 		ifFalse:[
@@ -98,7 +38,7 @@ multiply:  aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 	newTime:= aTime + self time.
 	newMass:= aMass -+ self mass.
 	result:=(Rational new)num: newNum den: newDen dist: newDist tm: newTime ms: newMass.
-	result simplify.
+	"result simplify."
 	^result! !
 
 !Rational methodsFor: 'operation' stamp: 'dkm 11/27/2017 03:15'!
@@ -111,7 +51,7 @@ divide:  aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 	newTime:= aTime - self time.
 	newMass:= aMass - self mass.
 	result:=(Rational new)num: newNum den: newDen dist: newDist tm: newTime ms: newMass.
-	result simplify.
+	"result simplify."
 	^result! !
 
 !Rational methodsFor: 'operation' stamp: 'dkm 11/27/2017 02:28'!
@@ -123,7 +63,7 @@ subtract: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass
 		num := (numerator * aDenominator) - (denominator * aNumerator).
 		den := denominator * aDenominator.
 		result := self new num den distance time mass.
-		result simplify.
+		"result simplify."
 		^result
 		]
 		ifFalse:[
@@ -169,4 +109,3 @@ init: dist time: tm mass: ms numerator: num denominator: den]
 |a|
 	a := (Rational new) init: 1 num2: 2 num3: 3 num4: 4 num5: 5.
 	(a printRational).
-!
