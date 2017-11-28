@@ -1,6 +1,6 @@
 Object subclass: #Rational .
     Rational instanceVariableNames: 'numerator denominator distance time mass' .
-	Rational classVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator' .
+	Rational class instanceVariableNames: 'defaultDistance defaultTime defaultMass defaultNumerator defaultDenominator' .
 	Rational poolDictionaries: ' ' .
 	Rational category: 'dimmensional fraction '	
 
