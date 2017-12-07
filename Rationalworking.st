@@ -11,24 +11,24 @@ Rational class extend[
 		defaultDenominator := 1.
 	]
 	new ["creates a Rational with the dimmensions set to 0"
-		^ super new init: defaultDistance tm: defaultTime ms: defaultMass num: defaultNumerator den: defaultDenominator
+		^ super new init: defaultDistance 
 	]
 
-	new: dist time: tm mass: ms numerator: num denominator: den[
-		^ init: dist time: tm mass: ms numerator: num denominator: den
+	new: number[
+		^ self new init: number
 	]
 ]
-	
+
 
 Rational extend[
-	init: dist time: tm mass: ms numerator: num denominator: den[
+	init: number[
 		"initialize a Rational"
 
-			numerator := num.
-			denominator:= den.
-			distance := dist.
-			time := tm.
-			mass := ms.
+			numerator := number.
+			denominator:= number.
+			distance := number.
+			time := number.
+			mass := number.
 	]
 	getNumerator[
 		^numerator
@@ -37,11 +37,7 @@ Rational extend[
 	getDenominator[
 		^denominator
 	]
-	printRational[	
-		self getNumerator print. 
-		 '/' print . 
-		self getDenominator printNl .
-	]
+	
 gcd: x number2: y[
 		|a b |
 		a := x.
@@ -62,10 +58,32 @@ simplify[
 		denominator := denominator/g.
  ]
  add: aRational[
-	|a b c d e|
-	a
+	|a b|
+	a := (aRational getNumerator).
+	b := (aRational getDenominator).
+	^self add: a num2: b num3: a num4: a num5: a
  
- ]
+ ]	
+	printRational[	
+		self getNumerator print. 
+		 '/' print . 
+		self getDenominator printNl .
+	]
+setDenominator: newDenominator[
+		denominator:= newDenominator
+]
+
+setDistance: newDistance[
+	distance:= newDistance ]
+
+setMass: newMass[
+	mass := newMass ]
+
+setNumerator: newNumerator[
+	numerator:= newNumerator ]
+
+setTime: newTime[
+	time:=newTime ]
 	add: aNumerator den: aDenominator dist: aDistance tm: aTime ms: aMass[
 		"add two rationals"
 		((aDistance = distance) & (aTime = time) & (aMass = mass)) 
@@ -123,6 +141,13 @@ simplify[
 	]
 ]!
 " tests"
-|a|
-	a := (Rational new): 6 time: 1 mass: 2 numerator: 3 denominator: 4.
+|a b|
+	a := (Rational new) init: 1.
+	a setNumerator: 2.
+	a setDenominator: 3.
 	(a printRational).
+	b:= (Rational new) init: 1.
+	b:= (a add: a).
+	(b printRational)
+	
+!
